@@ -1,0 +1,19 @@
+{
+  "name": "mystique-string",
+  "version": "0.1.0",
+  "description": "",
+  "main": "mystique-string.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "string",
+    "javascript"
+  ],
+  "author": "Hoony Chang <hoonch3@gmail.com> (https://github.com/hoonch3)",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
