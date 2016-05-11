@@ -1,4 +1,5 @@
 # Mystique-String
+
 ![Latest Version](https://img.shields.io/badge/version-0.1.0-blue.svg)
 ![Total Downloads](https://img.shields.io/npm/dt/mystique-string.svg)
 
