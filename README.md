@@ -14,7 +14,9 @@ var str = new MystiqueString('I\'m %%name%%', {
 console.log(str.get()) // I'm IronMan
 
 str.set({name: 'BatMan'})
-console.log(set.get()) // I'm BatMan
+console.log(str.get()) // I'm BatMan
+
+console.log(str.getOrigin()) // I'm %%name%%
 
 ```
 
