@@ -3,19 +3,38 @@ function MystiqueString(str, options) {
   this.options = options
 }
 
-MystiqueString.prototype.set = function(options) {
-  var self = this
-  var flag = true
-
-  Object.keys(options).forEach(function(v) {
-    if (self.options[v]) {
-      self.options[v] = options[v]
+MystiqueString.prototype.set = function() {
+  if (arguments.length > 1) {
+    if (typeof arguments[0] === 'string') {
+      this.str = arguments[0]
     } else {
-      flag = false
+      throw new Error('the first argument should be new string or new options')
     }
-  })
 
-  return flag ? self.options : new Error('There is no variable you try to change!')
+    if (typeof arguments[1] === 'object') {
+      this.options = setOptions(this.options, arguments[1])
+    } else {
+      throw new Error('the second argument should be new options')
+    }
+  } else if (arguments.length === 1) {
+    if (typeof arguments[0] === 'object') {
+      this.options = setOptions(this.options, arguments[0])
+    } else if ((typeof arguments[0]) === 'string') {
+      this.str = arguments[0]
+    }
+  } else {
+    throw new Error('new string or new options should be passed')
+  }
+
+  function setOptions(originOps, newOps) {
+    Object.keys(newOps).forEach(function(o) {
+      originOps[o] = newOps[o]
+    })
+
+    return originOps
+  }
+
+  return this
 }
 
 MystiqueString.prototype.get = function() {
@@ -26,11 +45,15 @@ MystiqueString.prototype.get = function() {
     convertedStr = convertedStr.replace('%%' + v + '%%', self.options[v])
   })
 
-  return convertedStr
+  return convertedStr.replace(/%%[a-zA-Z0-9]+%%/g, '[not set variable]')
 }
 
 MystiqueString.prototype.getOrigin = function() {
   return this.str
+}
+
+MystiqueString.prototype.getOptions = function() {
+  return this.options
 }
 
 module.exports = MystiqueString
